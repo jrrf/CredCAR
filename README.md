@@ -6,11 +6,7 @@
 
 Telas
 ----------------
-![CredCAR - Tela principal](https://raw.githubusercontent.com/jrrf/CredCAR/master/Imagens/tesla_principal.png)
-
-![CredCAR - Tela adicionar valor](https://raw.githubusercontent.com/jrrf/CredCAR/master/Imagens/adicionar_valor.png)
-
-![CredCAR - Tela passageiros](https://raw.githubusercontent.com/jrrf/CredCAR/master/Imagens/tela_passageiros.png)
+![CredCAR - Tela principal](https://raw.githubusercontent.com/jrrf/CredCAR/master/Imagens/tela_principal.png) ![CredCAR - Tela adicionar valor](https://raw.githubusercontent.com/jrrf/CredCAR/master/Imagens/adicionar_valor.png) ![CredCAR - Tela passageiros](https://raw.githubusercontent.com/jrrf/CredCAR/master/Imagens/tela_passageiros.png)
 
 Documentação
 ----------------
