@@ -6,7 +6,7 @@
 
 Telas
 ----------------
-![CredCAR - Tela principal](https://raw.githubusercontent.com/jrrf/CredCAR/master/Imagens/tela_principal.png)
+![CredCAR - Tela principal](https://raw.githubusercontent.com/jrrf/CredCAR/master/Imagens/tesla_principal.png)
 
 ![CredCAR - Tela adicionar valor](https://raw.githubusercontent.com/jrrf/CredCAR/master/Imagens/adicionar_valor.png)
 
