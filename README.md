@@ -1,4 +1,4 @@
-CredCAR
+﻿CredCAR
 =======================
 **CredCAR** foi desenvolvido utilizando o [Android Studio](https://developer.android.com/studio/) como projeto final da disciplina Programação para Dispositivos Moveis 2018.2.
 
@@ -18,7 +18,7 @@ Visite [documentação](https://github.com/jrrf/CredCAR/tree/master/Documentacao
 
 Versão do android suportada
 ----------------
-Android 4.4 +
+- Android 4.4 +
 
 Log de versões
 ----------------
