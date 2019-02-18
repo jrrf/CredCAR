@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         banco = new DBHelper(getApplicationContext());
 
-        AbasAdapter adapter = new AbasAdapter( getSupportFragmentManager() );
-        adapter.adicionar( new SituacaoFragment() , "SITUACAO");
-        adapter.adicionar( new HistoricoFragment(), "HISTORICO");
+        AbasAdapter adapter = new AbasAdapter(getSupportFragmentManager());
+        adapter.adicionar(new SituacaoFragment(), "SITUACAO");
+        adapter.adicionar(new HistoricoFragment(), "HISTORICO");
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
         viewPager.setAdapter(adapter);
@@ -53,13 +53,20 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         tv_main_valor_total = findViewById(R.id.tv_main_valor_total);
-        tv_main_valor_total.setText("R$ "+ banco.totalDevendo());
+
+        sharedPreferencesMainActivity = getSharedPreferences(ARQUIVO_PREFERENCIA, 0);
+        Boolean valorDiferenca = sharedPreferencesMainActivity.getBoolean("valorDiferenca", false);
+        if (valorDiferenca) {
+            tv_main_valor_total.setText("R$ " + banco.totalDiferenca());
+        }else {
+            tv_main_valor_total.setText("R$ " + banco.totalDevendo());
+        }
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),AgendaPassageirosActivity.class));
+                startActivity(new Intent(getApplicationContext(), AgendaPassageirosActivity.class));
             }
         });
     }
@@ -69,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         sharedPreferencesMainActivity = getSharedPreferences(ARQUIVO_PREFERENCIA, 0);
         if (sharedPreferencesMainActivity.contains("atualizarMain")) {
-            Boolean atualizarMain= sharedPreferencesMainActivity.getBoolean("atualizarMain", false);
-            if(atualizarMain){
+            Boolean atualizarMain = sharedPreferencesMainActivity.getBoolean("atualizarMain", false);
+            if (atualizarMain) {
                 SharedPreferences.Editor editor = sharedPreferencesMainActivity.edit();
                 editor.putBoolean("atualizarMain", false);
                 editor.commit();
@@ -85,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_principal, menu);
 
         MenuItem itemArquivado = menu.findItem(R.id.situacao_arquivado);
-        if(banco.getDBArquivado().size()>0)
+        if (banco.getDBArquivado().size() > 0)
             itemArquivado.setVisible(true);
         else itemArquivado.setVisible(false);
 
@@ -132,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         sair();
     }
 
-    public void sair(){
+    public void sair() {
         new AlertDialog.Builder(this).setTitle("Deseja realmente sair?")
                 .setMessage("Fechar o aplicativo")
                 .setCancelable(true)
@@ -146,16 +153,16 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    public void compartilharApp(){
+    public void compartilharApp() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT,getString(R.string.texto_compartilhar));
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT,"Teste subject");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.texto_compartilhar));
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Teste subject");
         sendIntent.setType("text/plain");
-        startActivity(Intent.createChooser(sendIntent,getString(R.string.menu_compartilhar)));
+        startActivity(Intent.createChooser(sendIntent, getString(R.string.menu_compartilhar)));
     }
 
-    public void mensagemSobre(){
+    public void mensagemSobre() {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(getString(R.string.app_name));
         alertDialog.setMessage(getString(R.string.descricao_sobre));
@@ -169,11 +176,11 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void configuracao(){
+    public void configuracao() {
         startActivity(new Intent(getApplicationContext(), SettingActivity.class));
     }
 
-    public void limparHistorico(){
+    public void limparHistorico() {
         new AlertDialog.Builder(this).setTitle("Deseja realmente limpar o historico?")
                 .setMessage("Isso apagará todo o histórico do registro")
                 .setCancelable(true)
@@ -181,13 +188,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         try {
-                            if(banco.limparHistorico()>0){
+                            if (banco.limparHistorico() > 0) {
                                 Toast.makeText(getApplicationContext(), "Historico limpado com sucesso", Toast.LENGTH_SHORT).show();
-                            }else{
+                            } else {
                                 Toast.makeText(getApplicationContext(), "Falha na limpeza", Toast.LENGTH_SHORT).show();
                             }
-                        }catch (Exception e){
-                            Toast.makeText( getApplicationContext(),"Falha ao limpar!", Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "Falha ao limpar!", Toast.LENGTH_LONG).show();
                         }
                         recreate();
                     }

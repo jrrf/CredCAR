@@ -140,7 +140,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return minhasSituacao;
     }
 
-
     public int deletarSituacao(int id) throws SQLException {
         abrirBD();
         int resultado = dbInstancia.delete("situacao", "id_passageiro = "+id, null);
@@ -241,4 +240,14 @@ public class DBHelper extends SQLiteOpenHelper {
             return total;
         return total*(-1);
     }
+
+    public double totalDiferenca () throws SQLException{
+        double total=0;
+        ArrayList<Situacao> listaCompleta = getDBTotal();
+        for (Situacao s : listaCompleta){
+            total += s.getValor();
+        }
+        return total;
+    }
+
 }

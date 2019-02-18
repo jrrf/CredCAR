@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="00,00"
-            android:inputType="numberDecimal"
+            android:inputType="numberSigned|numberDecimal"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/bt_dialog_salvar"
             app:layout_constraintEnd_toEndOf="parent"
